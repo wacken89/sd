@@ -21,6 +21,7 @@ services:
       - DB_NAME=gitlabhq_production
       - DB_USER=gitlab
       - DB_PASS=kqHA1OrRhxj37VyTJlz
+      - REDIS_HOST=redis
     volumes:
       - /docker_storage/gitlab/gitlab:/home/git/data
 
