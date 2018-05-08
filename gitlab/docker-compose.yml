@@ -1,0 +1,42 @@
+
+gitlab:
+  image: sameersbn/gitlab:10.7.2
+  hostname: git.sphericaldefence.com
+  links:
+    - mysql:mysql
+    - redis:redisio
+  ports:
+    - "2222:22"
+    - 127.0.0.1:10080:80
+    - 127.0.0.1:10443:443
+  environment:
+    - GITLAB_HOST=git.sphericaldefence.com
+    - GITLAB_EMAIL=gitlab@sphericaldefence.com
+    - GITLAB_EMAIL_DISPLAY_NAME="GitLab Spherical Defence"
+    - GITLAB_EMAIL_REPLY_TO=noreply@sphericaldefence.com
+    - GITLAB_SSH_PORT=2222
+    - GITLAB_SECRETS_DB_KEY_BASE=2d295cd5137833cfbdb9
+    - GITLAB_SECRETS_SECRET_KEY_BASE=lfdgfty5hftdure
+    - GITLAB_SECRETS_OTP_KEY_BASE=45rfjfhbcmdbnmvfd
+    - DB_ADAPTER=mysql2
+    - DB_HOST=mysql
+    - DB_NAME=gitlabhq_production
+    - DB_USER=gitlab
+    - DB_PASS=kqHA1OrRhxj37VyTJlz
+  volumes:
+    - /docker_storage/gitlab/gitlab:/home/git/data
+
+redis:
+  image: redis
+  volumes:
+    - /docker_storage/gitlab/redis:/var/lib/redis
+
+mysql:
+  image: mysql
+  environment:
+    - MYSQL_DATABASE=gitlabhq_production
+    - MYSQL_USER=gitlab
+    - MYSQL_PASSWORD=kqHA1OrRhxj37VyTJlz
+  volumes:
+    - /docker_storage/gitlab/mysql5.7.19:/var/lib/mysql
+    - ./config:/etc/mysql/conf.d/
