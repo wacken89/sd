@@ -30,6 +30,7 @@ redis:
 mysql:
   image: mysql
   environment:
+    - MYSQL_RANDOM_ROOT_PASSWORD=yes
     - MYSQL_DATABASE=gitlabhq_production
     - MYSQL_USER=gitlab
     - MYSQL_PASSWORD=kqHA1OrRhxj37VyTJlz
