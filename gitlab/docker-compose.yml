@@ -28,7 +28,7 @@ redis:
     - /docker_storage/gitlab/redis:/var/lib/redis
 
 mysql:
-  image: mysql
+  image: mysql:5.7
   environment:
     - MYSQL_RANDOM_ROOT_PASSWORD=yes
     - MYSQL_DATABASE=gitlabhq_production
