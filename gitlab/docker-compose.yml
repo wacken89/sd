@@ -2,13 +2,9 @@
 gitlab:
   image: sameersbn/gitlab:10.7.2
   hostname: git.sphericaldefence.com
-  links:
-    - mysql:mysql
-    - redis:redisio
   ports:
     - "2222:22"
     - 127.0.0.1:10080:80
-    - 127.0.0.1:10443:443
   environment:
     - GITLAB_HOST=git.sphericaldefence.com
     - GITLAB_EMAIL=gitlab@sphericaldefence.com
@@ -38,5 +34,5 @@ mysql:
     - MYSQL_USER=gitlab
     - MYSQL_PASSWORD=kqHA1OrRhxj37VyTJlz
   volumes:
-    - /docker_storage/gitlab/mysql5.7.19:/var/lib/mysql
+    - /docker_storage/gitlab/mysql:/var/lib/mysql
     - ./config:/etc/mysql/conf.d/
